@@ -68,7 +68,6 @@ pub fn main() anyerror!void {
     c.glBindVertexArray(0);
 
     std.debug.warn("VBO: {} VAO: {}\n", .{ VBO, VAO });
-    c.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
     // Loop until the user closes the window
     while (c.glfwWindowShouldClose(window) == 0) {
@@ -79,6 +78,7 @@ pub fn main() anyerror!void {
         c.glClear(c.GL_COLOR_BUFFER_BIT);
 
         // draw our first triangle
+        c.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         c.glUseProgram(shaderProgram);
         c.glDrawArrays(c.GL_TRIANGLES, 0, 3);
 
